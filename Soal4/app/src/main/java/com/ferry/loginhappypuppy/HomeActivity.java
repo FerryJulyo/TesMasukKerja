@@ -5,20 +5,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity {
+    Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-    }
 
-    private void logOut(View view){
-        SessionHelper sessionHelper = new SessionHelper(HomeActivity.this);
-        sessionHelper.removeSession();
+        btnLogout    = (Button) findViewById(R.id.btnLogout);
 
-        moveToLogin();
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SessionHelper sessionHelper = new SessionHelper(HomeActivity.this);
+                sessionHelper.removeSession();
+
+                moveToLogin();
+            }
+        });
     }
 
     private  void  moveToLogin(){
